@@ -223,18 +223,20 @@ server <- function(input, output){
   #***Hardcode the year to whatever year it is you're doing this in!
   formData <- reactive({
     #this is ghastly i'm sorry i couldn't figure out how to make it more efficient i'm not a professional lol
-    data.frame("YEAR" = "2019","NEST" = input$NEST, "OBS" = input$OBS, "DATE" = input$DATE, "TIME" = input$TIME, "S" = input$S,
-               "BAND" = input$BAND, "C1" = input$C1, "MATE" = input$MATE, "C2" = input$C2, "LOC" = input$LOC,
-               "A" = input$A, "B" = input$B, "C" = input$C, "D" = input$D, "E" = input$E, "F" = input$F,
-               "G" = input$G, "H" = input$H, "I" = input$I, "J" = input$J, "K" = input$K, "L" = input$L,
-               "M" = input$M, "N" = input$N, "O" = input$O, "P" = input$P, "COMMENTS" = input$COMMENTS,
-               stringsAsFactors = FALSE)
+    data.frame("YEAR" = "2019","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
+               "TIME" = input$TIME, "S" = toupper(input$S), "BAND" = toupper(input$BAND), "C1" = toupper(input$C1),
+               "MATE" = toupper(input$MATE), "C2" = toupper(input$C2), "LOC" = toupper(input$LOC),
+               "A" = input$A, "B" = input$B, "C" = input$C, "D" = input$D, "E" = input$E, "F" = toupper(input$F),
+               "G" = input$G, "H" = input$H, "I" = input$I, "J" = input$J, "K" = input$K, "L" = toupper(input$L),
+               "M" = toupper(input$M), "N" = toupper(input$N), "O" = toupper(input$O), "P" = input$P, 
+               "COMMENTS" = toupper(input$COMMENTS), stringsAsFactors = FALSE)
   })
   
   egginputs <- reactive({
-    data.frame("YEAR" = "2019","NEST" = input$NEST, "OBS" = input$OBS, "DATE" = input$DATE, "EGGA" = input$EGGA, 
-               "LENGTH" = input$LENGTH, "WIDTH" = input$WIDTH, "EGGB" = input$EGGB,"TAG" = input$TAG, 
-               "STATE" = input$STATE, "BAND" = input$BAND2, "COMMENTS" = input$COMMENTS2,
+    data.frame("YEAR" = "2019","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
+               "EGGA" = toupper(input$EGGA), "LENGTH" = input$LENGTH, "WIDTH" = input$WIDTH, 
+               "EGGB" = toupper(input$EGGB),"TAG" = toupper(input$TAG), "STATE" = toupper(input$STATE), 
+               "BAND" = toupper(input$BAND2), "COMMENTS" = toupper(input$COMMENTS2),
                stringsAsFactors = FALSE)
   })
   
