@@ -5,12 +5,13 @@
 library(shiny)
 library(shinyjs)
 library(dplyr)
+library(DT)
 library(shinythemes)
 
 #A *** indicates a section where the user must enter a file/directory or make some other choice
 
-#***If this is the first entry of the season go ahead and make a .csv file with the same headings as would 
-#   normally go in the file and save it as whatever name you want (ex: nest2020). Then load this file in down below 
+#***If this is the first entry of the season go ahead and make a .csv file if there isn't one already with the same headings as 
+#   would normally go in the file and save it as whatever name you want (ex: nest2020). Then load these files in down below 
 #   and when you run the app and start adding data it'll work! 
 
 #***Change the working directory
@@ -152,7 +153,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                                                     textInput("COMMENTS", "COMMENTS")))),
                                          br(),
                                          br(),
-                                         actionButton("submit", "Submit", class = "btn-primary"), #***fix this to be bottom right
+                                         actionButton("submit", "Submit", class = "btn-primary"), 
                                          actionButton("save", "Save", class = "btn-primary"),
                                          br(),
                                          br(),
@@ -320,6 +321,8 @@ server <- function(input, output){
     n_original[which(n_original$NEST == input$NEST),]
   },
   options = list(scrollX = TRUE))
+  
+  session$onSessionEnded(stopApp) #Stops the app if the user closes the browser
   
 }
 
