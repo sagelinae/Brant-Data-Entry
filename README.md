@@ -28,7 +28,7 @@ packages <- c("shiny", "shinyjs", "shinythemes", “dplyr”, “DT”)
 ipak(packages)
 ```  
 
-2.	Install a browser (not AOL please) if you don’t have one already – **_requires internet connection_** <br>
+2.	Install a browser if you don’t have one already – **_requires internet connection_** <br>
 3.	Go to https://github.com/sagelinae/Brant-Data-Entry and click the green button that says “Clone or Download” – **_requires internet connection_** <br>
 *Not sure if this is where we’ll keep it forever but this is where it is for now* <br>
     a.	Then click “Download ZIP” <br>
