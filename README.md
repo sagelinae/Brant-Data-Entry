@@ -1,13 +1,13 @@
 # Brant-Data-Entry
 An app that runs locally to enter Brant Data along w/ necessary details and shortcuts to run it. 
 
-How To Work Brant Entry word doc gives simple explanations in progress to run this app on your own device in a word doc format. 
+**How To Work Brant Entry App.docx:** gives step by step instructions on how to work this app. 
 
-Combine_files.R is to combine files into one if people entered data on multiple devices
+**Combine_files.R:** A script to combine files if data was entered on multiple computers
 
-BrantEntry.bat is a batch file so we can run the code as a desktop shortcut without opening R
+**BrantEntry.bat:** A batch file so we can run the code as a desktop shortcut without opening R
 
-Brant Data Entry.vbs is a visual basic processing script that will just run the batch file but without opening up the window's command line so it's more visually appealing to the user by calling the batch file. 
+**Brant Data Entry.vbs:** A visual basic processing script that will just run the batch file but without opening up the window's command line so it's more visually appealing to the user by calling the batch file. 
 
 # How to work Brant-Entry Shiny App
 
