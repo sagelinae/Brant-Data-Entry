@@ -9,13 +9,22 @@ NestBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Ba
 BandBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Backups\\Band"
 EggBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Backups\\Egg"
 
+#***Read in the files that you want to combine
+bpathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019.csv"
+b2pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019 (2).csv"
+
+npathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019.csv"
+n2pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019 (2).csv"
+
+epathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019.csv"
+e2pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019 (2).csv"
+
 ###
 #Band
 ###
 
-#***Read in the files that you want to combine
-file1 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019.csv")
-file2 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019 (2).csv")
+file1 <- read.csv(bpathway)
+file2 <- read.csv(b2pathway)
 
 #combine files
 combined <- merge(file1, file2, all = TRUE) 
@@ -25,14 +34,17 @@ write.csv(combined, file.path(BandBackupdir, paste0("BAND2019_", date_time, ".cs
 
 #Overwrite both of them? hmm not sure how to exactly deal with this
 #These both should be backuped already from app.r on their respective devices
-write.csv(combined, "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019.csv", row.names = FALSE)
-file.remove("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019 (2).csv") 
+
+#***Can we just put file 1/file 2 instead so people don't have to change it a billion times????
+#hmm it's not a pathway directly 
+write.csv(combined, bpathway, row.names = FALSE)
+file.remove(b2pathway) 
 
 ###
 #Nest
 ###
-nfile1 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019.csv")
-nfile2 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019 (2).csv")
+nfile1 <- read.csv(npathway)
+nfile2 <- read.csv(n2pathway)
 
 #combine files
 ncombined <- merge(nfile1, nfile2, all = TRUE) 
@@ -41,14 +53,14 @@ write.csv(ncombined, file.path(NestBackupdir, paste0("NEST2019_", date_time, ".c
 
 #Overwrite both of them? hmm not sure how to exactly deal with this
 #These both should be backuped already from app.r on their respective devices
-write.csv(ncombined, "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019.csv", row.names = FALSE)
-file.remove("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019 (2).csv") 
+write.csv(ncombined, npathway, row.names = FALSE)
+file.remove(n2pathway) 
 
 ###
 #Egg
 ###
-efile1 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019.csv")
-efile2 <- read.csv("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019 (2).csv")
+efile1 <- read.csv(epathway)
+efile2 <- read.csv(e2pathway)
 
 #combine files
 ecombined <- merge(efile1, efile2, all = TRUE) 
@@ -57,7 +69,7 @@ write.csv(ecombined, file.path(EggBackupdir, paste0("EGG2019_", date_time, ".csv
 
 #Overwrite both of them? hmm not sure how to exactly deal with this
 #These both should be backuped already from app.r on their respective devices
-write.csv(ecombined, "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019.csv", row.names = FALSE)
-file.remove("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019 (2).csv") 
+write.csv(ecombined, epathway, row.names = FALSE)
+file.remove(e2pathway) 
 
 
