@@ -1,1 +1,1 @@
-"C:\Program Files\R\R-3.6.0\bin\Rscript.exe" -e "shiny::runApp('X:/Public/Data_proofing_scripts/Sage/Shiny/Brant-Data', launch.browser = TRUE)"
+"C:\Program Files\R\R-3.6.0\bin\Rscript.exe" -e "shiny::runApp('C:/Users/sellis/Desktop/Brant-Data/Brant-Data', launch.browser = TRUE)"

@@ -15,22 +15,22 @@ library(shinythemes)
 #   and when you run the app and start adding data it'll work! 
 
 #***Change the working directory
-setwd("X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data")
+setwd("C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data")
 
 #Reads the date and time and formats it as mm-dd_%H-%M (month-day_hour-minute) to be used when saving backups
 date_time <- paste0(substr(Sys.time(), 6,10), "_",sub(':', '-', strftime(Sys.time(), "%H:%M")))
 
 #***Enter a directory to save your backups to!  
-NestBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Backups\\Nest\\"
-BandBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Backups\\Band\\"
-EggBackupdir <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Backups\\Egg\\"
+NestBackupdir <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Backups\\Nest\\"
+BandBackupdir <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Backups\\Band\\"
+EggBackupdir <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Backups\\Egg\\"
 
 ###
 #Make a backup of the NEST file you'll be writing to
 ###
 
 #***Add a location of the nest file you want to update in CSV format!! Make sure if it's not to convert it first
-pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\NEST2019.csv"   
+pathway <-"C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Data\\NEST2020.csv" 
 n_original <- read.csv(pathway)
 n_original <- n_original %>% mutate_all(as.character)
 
@@ -47,7 +47,7 @@ write.csv(n_original, filePath, row.names = FALSE)
 ###
 
 #***Add a location of the band file you want to update in .csv format
-b_pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\BAND2019.csv"  
+b_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Data\\BAND2020.csv" 
 b_original <- read.csv(b_pathway)
 b_original <- b_original %>% mutate_all(as.character)
 
@@ -63,7 +63,7 @@ write.csv(b_original, b_filePath, row.names = FALSE)
 ###
 
 #***Enter the pathway to the egg file you want to add to in a csv format
-e_pathway <- "X:\\Public\\Data_proofing_scripts\\Sage\\Shiny\\Brant-Data\\Data\\EGG2019.csv" 
+e_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Brant-Data\\Data\\EGG2020.csv" 
 e_original <- read.csv(e_pathway) 
 e_original <- e_original %>% mutate_all(as.character)
 
@@ -201,7 +201,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
 
 ###Create server
 #This builds and will rebuild based off of user interaction
-server <- function(input, output){
+server <- function(input, output, session){
   
   #Hides the previous observations tab until clicked
   observe({
@@ -224,7 +224,7 @@ server <- function(input, output){
   #***Hardcode the year to whatever year it is you're doing this in!
   formData <- reactive({
     #this is ghastly i'm sorry i couldn't figure out how to make it more efficient i'm not a professional lol
-    data.frame("YEAR" = "2019","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
+    data.frame("YEAR" = "2020","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
                "TIME" = input$TIME, "S" = toupper(input$S), "BAND" = toupper(input$BAND), "C1" = toupper(input$C1),
                "MATE" = toupper(input$MATE), "C2" = toupper(input$C2), "LOC" = toupper(input$LOC),
                "A" = input$A, "B" = input$B, "C" = input$C, "D" = input$D, "E" = input$E, "F" = toupper(input$F),
@@ -234,7 +234,7 @@ server <- function(input, output){
   })
   
   egginputs <- reactive({
-    data.frame("YEAR" = "2019","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
+    data.frame("YEAR" = "2020","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
                "EGGA" = toupper(input$EGGA), "LENGTH" = input$LENGTH, "WIDTH" = input$WIDTH, 
                "EGGB" = toupper(input$EGGB),"TAG" = toupper(input$TAG), "STATE" = toupper(input$STATE), 
                "BAND" = toupper(input$BAND2), "COMMENTS" = toupper(input$COMMENTS2),
