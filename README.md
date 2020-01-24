@@ -46,7 +46,7 @@ ipak(packages)
     •	One Windows Batch File script called BrantEntry <br>
     •	One VBScript file called Brant Data Entry <br>
     •   A word document titled: How To Work Brant Entry App <br>
-    •	A copy of this same MD file as a word doc <br>
+    •	A copy of this same MD file <br>
 
 4. Open up the How to Work Brant Entry word doc and continue on step 4 there <br>
 * *I don't know markdown well enough yet and can't format the lists or insert pictures so we'll keep to basic word for now!*
