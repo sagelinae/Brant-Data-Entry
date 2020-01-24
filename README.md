@@ -1,7 +1,7 @@
 # Brant-Data-Entry
 An app that runs locally to enter Brant Data along w/ necessary details and shortcuts to run it. 
 
-This has only been tested on a Windows so far, I know you may have a problem on Macs/other systems when trying to work shortcuts so you're on your own for now with that. 
+This has only been tested on a Windows so far, I know you may have a problem on Macs/other systems when trying to work shortcuts so you're on your own for now with that. But the app itself will still run and work! You'll just have to go into the app.R and run it every time.
 
 **How To Work Brant Entry App.docx:** gives step by step instructions on how to work this app. 
 
