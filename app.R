@@ -1,5 +1,6 @@
 ###########################################
-#Sage's attempt at making a shiny package we'll see how it goes lmao
+#A Shiny App for entering data
+#SLE Fall 2019
 ###########################################
 
 library(shiny)
