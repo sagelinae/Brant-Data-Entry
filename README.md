@@ -26,7 +26,7 @@ ipak <- function(pkg){
   sapply(pkg, library, character.only = TRUE)
 }
 
-packages <- c("shiny", "shinyjs", "shinythemes", “dplyr”, “DT”)
+packages <- c("shiny", "shinyjs", "shinythemes", "dplyr", "DT")
 ipak(packages)
 ```  
 
