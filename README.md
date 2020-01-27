@@ -51,6 +51,6 @@ ipak(packages)
 4. Open up the How to Work Brant Entry word doc and continue on step 4 there <br>
 * *I don't know markdown well enough yet and can't format the lists or insert pictures so we'll keep to basic word for now!*
 
-Please feel free to reach out with any questions and/or bugs while trying to use the app!
+Please feel free to reach out with any questions and/or bugs while trying to use the app! <br>
 Email: sage.linae.ellis@gmail.com
 
