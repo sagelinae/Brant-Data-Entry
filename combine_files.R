@@ -32,7 +32,7 @@ combined[combined == ""] <- NA
 combined <- unique(combined)
 write.csv(combined, file.path(BandBackupdir, paste0("BAND2019_", date_time, ".csv")), row.names = FALSE) #Writes backup
 
-#Overwrite both of them? hmm not sure how to exactly deal with this
+#Here we overwrite the original device's file with the updated info, and then delete the second file.
 #These both should be backuped already from app.r on their respective devices
 
 write.csv(combined, bpathway, row.names = FALSE)
@@ -49,7 +49,7 @@ ncombined <- merge(nfile1, nfile2, all = TRUE)
 ncombined[ncombined == ""] <- NA
 write.csv(ncombined, file.path(NestBackupdir, paste0("NEST2019_", date_time, ".csv")), row.names = FALSE)
 
-#Overwrite both of them? hmm not sure how to exactly deal with this
+#Here we overwrite the original device's file with the updated info, and then delete the second file.
 #These both should be backuped already from app.r on their respective devices
 write.csv(ncombined, npathway, row.names = FALSE)
 file.remove(n2pathway) 
@@ -65,7 +65,7 @@ ecombined <- merge(efile1, efile2, all = TRUE)
 ecombined[ecombined == ""] <- NA
 write.csv(ecombined, file.path(EggBackupdir, paste0("EGG2019_", date_time, ".csv")), row.names = FALSE)
 
-#Overwrite both of them? hmm not sure how to exactly deal with this
+#Here we overwrite the original device's file with the updated info, and then delete the second file.
 #These both should be backuped already from app.r on their respective devices
 write.csv(ecombined, epathway, row.names = FALSE)
 file.remove(e2pathway) 
