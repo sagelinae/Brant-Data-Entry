@@ -9,7 +9,7 @@ This has only been tested on a Windows so far, I know you may have a problem on 
 
 **BrantEntry.bat:** A batch file so we can run the code as a desktop shortcut without opening R
 
-**Brant Data Entry.vbs:** A visual basic processing script that will just run the batch file but without opening up the window's command line so it's more visually appealing to the user by calling the batch file. 
+**Brant Data Entry.vbs:** A visual basic processing script that will just run the batch file but without opening up the window's command line so it's more visually appealing to the user.
 
 # How to work Brant-Entry Shiny App
 
