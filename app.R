@@ -266,13 +266,13 @@ server <- function(input, output, session){
     #Take all the entries and pull out the rows we need for the band file
     isolate(band$df <- rbind(band$df, nest$df[which(colnames(nest$df) %in% bandfields)] ))
     band$df <- unique(band$df)
-    band$df <- rename(band$df, C = C1)
+    #band$df <- rename(band$df, C = C1)
     #Bind rows will throw warnigs, but we decided that it changing into a character is fine since it does what we want.
     allband <- bind_rows(b_original, band$df)
     allband <- unique(allband)
     
     write.csv(allband, file = b_pathway, row.names = FALSE)
-    band$df <- rename(band$df, C1 = C)
+    #band$df <- rename(band$df, C1 = C)
     
     nest$df <- unique(nest$df)
     allnest <- bind_rows(n_original, nest$df) #Add the new entries to the original nest file
