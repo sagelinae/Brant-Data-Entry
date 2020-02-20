@@ -105,7 +105,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                 sidebarLayout(
                   sidebarPanel(id = "form",
                                width = 3,
-                               h4("Don't give up"),
+                               #h4("Don't give up"), #If you want to give a title to the techs and change it ocaisonally you can uncomment this and type whatever you want in the quotes :)
                                textInput("NEST", "Nest", width = "45%"),
                                textInput("OBS", "Observer", width = "45%"),
                                textInput("DATE", "Date", width = "45%"),
