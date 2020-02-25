@@ -306,15 +306,10 @@ server <- function(input, output, session){
   
   #When the user clicks save:
   observeEvent(input$save, {
-    # b_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Data\\BAND2020.csv"
-    # b_original <- read.csv(b_pathway)
-    # b_original <- b_original %>% mutate_all(as.character)
-
-
     #Take all the entries and pull out the rows we need for the band file
     isolate(band$df <- bind_rows(band$df, nest$df[which(colnames(nest$df) %in% bandfields)] ))
     band$df <- unique(band$df)
-    #band$df <- rename(band$df, C = C1)
+    
     #Bind rows will throw warnigs, but we decided that it changing into a character is fine since it does what we want.
     allband <- bind_rows(b_original, band$df)
     allband <- unique(allband)
@@ -333,9 +328,6 @@ server <- function(input, output, session){
   })
 
   observeEvent(input$save2, {
-    # b_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Data\\BAND2020.csv"
-    # b_original <- read.csv(b_pathway)
-    # b_original <- b_original %>% mutate_all(as.character)
 
     band$df <- unique(band$df)
     allband<- bind_rows(b_original, band$df)
@@ -348,8 +340,6 @@ server <- function(input, output, session){
   })
   
   observeEvent(input$save3, {
-    #e_original <- read.csv(e_pathway)
-    #e_original <- e_original %>% mutate_all(as.factor)
     
     egg$df <- unique(egg$df)
     allegg <- bind_rows(e_original, egg$df)
@@ -369,7 +359,6 @@ server <- function(input, output, session){
       need(nchar(input$NEST) == 6, "Please enter a valid Nest name (must be 6 chars)"),
       need(nchar(input$OBS) == 3, "Please enter a valid Observer name (must be 3 chars)")
     )
-    #input$submit #???
     nest$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
@@ -381,7 +370,6 @@ server <- function(input, output, session){
   
   
   output$egg_inputs <- DT::renderDataTable({
-    #input$submit #???
     egg$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
