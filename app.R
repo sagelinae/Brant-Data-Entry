@@ -376,7 +376,7 @@ server <- function(input, output, session){
   
   output$prev_obs <- DT::renderDataTable({
     n_original <- read.csv(pathway)
-    n_original[which(n_original$NEST == input$NEST),]
+    n_original[which(n_original$NEST == toupper(input$NEST)),]
   },
   options = list(scrollX = TRUE))
   
