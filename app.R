@@ -164,6 +164,33 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                                            h3("Thanks, your response was saved successfully!")
                                          )))
                                 ),
+                                tabPanel("Band Only",
+                                         br(),
+                                         br(),
+                                         column(12,
+                                                fluidRow(
+                                                  splitLayout(
+                                                    textInput("BAND2", "BAND"),
+                                                    textInput("C1_2", "C1"),
+                                                    textInput("MATE2", "MATE"),
+                                                    textInput("C2_2", "C2"),
+                                                    textInput("TIME2", "TIME"),
+                                                    textInput("BRSIZE", "BRSIZE"),
+                                                    textInput("LOC2", "LOC"),
+                                                    textInput("TOW", "TOW"),
+                                                    textInput("COMMENTS2", "COMMENTS")))),
+                                         br(),
+                                         br(),
+                                         actionButton("submit2", "Submit", class = "btn-primary"), 
+                                         actionButton("save2", "Save", class = "btn-primary"),
+                                         br(),
+                                         br(),
+                                         column(12,fluidRow(DT::dataTableOutput("band_inputs"))),
+                                         fluidRow(shinyjs::hidden(div(
+                                           id = "band_msg",
+                                           h3("Thanks, your response was saved successfully!")
+                                         )))
+                                ),
                                 tabPanel("Egg",
                                          br(),
                                          br(),
@@ -176,12 +203,12 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                                                     textInput("EGGB", "EGGB"),
                                                     textInput("TAG", "TAG"),
                                                     textInput("STATE", "STATE"),
-                                                    textInput("BAND2", "BAND"),
-                                                    textInput("COMMENTS2", "COMMENTS")))),
+                                                    textInput("BAND3", "BAND"),
+                                                    textInput("COMMENTS3", "COMMENTS")))),
                                          br(),
                                          br(),
-                                         actionButton("submit2", "Submit", class = "btn-primary"), 
-                                         actionButton("save2", "Save", class = "btn-primary"),
+                                         actionButton("submit3", "Submit", class = "btn-primary"), 
+                                         actionButton("save3", "Save", class = "btn-primary"),
                                          br(),
                                          br(),
                                          column(12,fluidRow(DT::dataTableOutput("egg_inputs"))),
@@ -234,11 +261,19 @@ server <- function(input, output, session){
                "COMMENTS" = toupper(input$COMMENTS), stringsAsFactors = FALSE)
   })
   
+  bandinputs <- reactive({
+    data.frame("YEAR" = "2020","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
+               "BAND" = toupper(input$BAND2), "C1" = input$C1_2, "MATE" = input$MATE2, "C2" = input$C2_2,
+               "TIME" = toupper(input$TIME2),"BRSIZE" = toupper(input$BRSIZE), 
+               "LOC" = toupper(input$LOC2), "TOW" = toupper(input$TOW), 
+               "COMMENTS" = toupper(input$COMMENTS2), stringsAsFactors = FALSE)
+  })
+  
   egginputs <- reactive({
     data.frame("YEAR" = "2020","NEST" = toupper(input$NEST), "OBS" = toupper(input$OBS), "DATE" = input$DATE, 
                "EGGA" = toupper(input$EGGA), "LENGTH" = input$LENGTH, "WIDTH" = input$WIDTH, 
                "EGGB" = toupper(input$EGGB),"TAG" = toupper(input$TAG), "STATE" = toupper(input$STATE), 
-               "BAND" = toupper(input$BAND2), "COMMENTS" = toupper(input$COMMENTS2),
+               "BAND" = toupper(input$BAND3), "COMMENTS" = toupper(input$COMMENTS3),
                stringsAsFactors = FALSE)
   })
   
@@ -252,6 +287,15 @@ server <- function(input, output, session){
   })
   
   observeEvent(input$submit2, {
+    #write to band template
+    tryCatch({
+      shinyjs::hide("band_msg")
+      shinyjs::reset('main')
+    })
+    isolate(band$df <- rbind(as.matrix(band$df),bandinputs()))
+  })
+  
+  observeEvent(input$submit3, {
     #write to egg template
     tryCatch({
       shinyjs::hide("egg_msg")
@@ -262,29 +306,48 @@ server <- function(input, output, session){
   
   #When the user clicks save:
   observeEvent(input$save, {
-    
+    # b_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Data\\BAND2020.csv"
+    # b_original <- read.csv(b_pathway)
+    # b_original <- b_original %>% mutate_all(as.character)
+
+
     #Take all the entries and pull out the rows we need for the band file
-    isolate(band$df <- rbind(band$df, nest$df[which(colnames(nest$df) %in% bandfields)] ))
+    isolate(band$df <- bind_rows(band$df, nest$df[which(colnames(nest$df) %in% bandfields)] ))
     band$df <- unique(band$df)
     #band$df <- rename(band$df, C = C1)
     #Bind rows will throw warnigs, but we decided that it changing into a character is fine since it does what we want.
     allband <- bind_rows(b_original, band$df)
     allband <- unique(allband)
-    
+
     write.csv(allband, file = b_pathway, row.names = FALSE)
     #band$df <- rename(band$df, C1 = C)
-    
+
     nest$df <- unique(nest$df)
     allnest <- bind_rows(n_original, nest$df) #Add the new entries to the original nest file
     allnest <- unique(allnest)
-    
+
     #This will overwrite your original file! That's why we make a backup!
     write.csv(allnest, pathway, row.names = FALSE)
-    
-    shinyjs::show("thankyou_msg") 
+
+    shinyjs::show("thankyou_msg")
+  })
+
+  observeEvent(input$save2, {
+    # b_pathway <- "C:\\Users\\sellis\\Desktop\\Brant-Data\\Data\\BAND2020.csv"
+    # b_original <- read.csv(b_pathway)
+    # b_original <- b_original %>% mutate_all(as.character)
+
+    band$df <- unique(band$df)
+    allband<- bind_rows(b_original, band$df)
+    allband <- unique(allband)
+
+
+    write.csv(allband, file = b_pathway, row.names = FALSE)
+
+    shinyjs::show("band_msg")
   })
   
-  observeEvent(input$save2, {
+  observeEvent(input$save3, {
     #e_original <- read.csv(e_pathway)
     #e_original <- e_original %>% mutate_all(as.factor)
     
@@ -310,6 +373,12 @@ server <- function(input, output, session){
     nest$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
+  
+  output$band_inputs <- DT::renderDataTable({
+    band$df
+  },
+  options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
+  
   
   output$egg_inputs <- DT::renderDataTable({
     #input$submit #???
