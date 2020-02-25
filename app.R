@@ -359,17 +359,28 @@ server <- function(input, output, session){
       need(nchar(input$NEST) == 6, "Please enter a valid Nest name (must be 6 chars)"),
       need(nchar(input$OBS) == 3, "Please enter a valid Observer name (must be 3 chars)")
     )
+    
     nest$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
   
   output$band_inputs <- DT::renderDataTable({
+    validate(
+      need(nchar(input$NEST) == 6, "Please enter a valid Nest name (must be 6 chars)"),
+      need(nchar(input$OBS) == 3, "Please enter a valid Observer name (must be 3 chars)")
+    )
+    
     band$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
   
   
   output$egg_inputs <- DT::renderDataTable({
+    validate(
+      need(nchar(input$NEST) == 6, "Please enter a valid Nest name (must be 6 chars)"),
+      need(nchar(input$OBS) == 3, "Please enter a valid Observer name (must be 3 chars)")
+    )
+    
     egg$df
   },
   options = list(scrollX = TRUE)) #Adds a scrollbar onto our table
